@@ -16,22 +16,18 @@ import static com.example.asynctaskwithapiexample.utilities.Constants.GUNFIRE_UR
 import static com.example.asynctaskwithapiexample.utilities.Constants.METEOLT_API_URL;
 
 public class ApiDataReader {
-    public static List<String> getValuesFromApi(String apiCode) throws IOException {
+    public static String getValuesFromApi(String apiCode) throws IOException {
         InputStream apiContentStream = null;
-        List<String> result = new ArrayList<>();
+        String result = "";
         try {
             switch (apiCode) {
-                case GUNFIRE_URL:
-                    apiContentStream = downloadUrlContent(GUNFIRE_URL);
-                    result.add(GunfireHtmlParser.getAmountAndDiscountFromGunfire(apiContentStream));
+                case METEOLT_API_URL:
+                    apiContentStream = downloadUrlContent(METEOLT_API_URL);
+                    result = MeteoLtJsonParser.getKaunasWeatherForecast(apiContentStream);
                     break;
                 case FLOATRATES_API_URL:
                     apiContentStream = downloadUrlContent(FLOATRATES_API_URL);
-                    result.addAll(FloatRatesXmlParser.getCurrencyRatesBaseUsd(apiContentStream));
-                    break;
-                case METEOLT_API_URL:
-                    apiContentStream = downloadUrlContent(METEOLT_API_URL);
-                    result.addAll(MeteoLtJsonParser.getKaunasWeatherForecast(apiContentStream));
+                    result = FloatRatesXmlParser.getCurrencyRatesBaseUsd(apiContentStream);
                     break;
                 default:
             }

@@ -30,4 +30,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_get_data" />
 
+    <Switch
+        android:id="@+id/sw_use_async_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_async_task"
+        app:layout_constraintBottom_toTopOf="@+id/tv_status"
+        app:layout_constraintStart_toEndOf="@+id/btn_get_data"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

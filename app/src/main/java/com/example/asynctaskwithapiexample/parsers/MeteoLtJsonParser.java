@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeteoLtJsonParser {
-    public static List<String> getKaunasWeatherForecast(InputStream stream) throws IOException {
+    public static String getKaunasWeatherForecast(InputStream stream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
         String line = "";
         String data = "";
@@ -21,16 +21,17 @@ public class MeteoLtJsonParser {
             data = data + line;
         }
 
-        List<String> result = new ArrayList<>();
+        String result = "";
         try {
             JSONObject jData = new JSONObject(data);
-            JSONArray dataObjects = jData.getJSONArray("forecastTimestamps");
-            for (int i = 0; i < dataObjects.length(); i++) {
-                JSONObject dataObject = dataObjects.getJSONObject(i);
-                String timeStamp = dataObject.getString("forecastTimeUtc");
-                String temperature = dataObject.getString("airTemperature");
-                result.add(String.format("Time: %s, temp: %s\n", timeStamp, temperature));
-            }
+
+            JSONObject placeNode = jData.getJSONObject("place");
+            JSONObject coordinatesNodes = placeNode.getJSONObject("coordinates");
+            String lat = coordinatesNodes.getString("latitude");
+            String lon = coordinatesNodes.getString("longitude");
+            String administrativeDivision = placeNode.getString("administrativeDivision");
+            result = String.format("location name: %s,\n lat: %s,\n lon: %s", administrativeDivision, lat, lon);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
