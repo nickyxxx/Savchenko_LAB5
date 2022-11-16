@@ -11,7 +11,7 @@ public class GunfireHtmlParser {
     public static String getAmountAndDiscountFromGunfire(InputStream stream) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(stream));
         for (String line; (line = r.readLine()) != null; ) {
-            Matcher m = Pattern.compile("\"status_description\":(.*),").matcher(line);
+            Matcher m = Pattern.compile("id=\"projector_status_description\">(.*)").matcher(line);
             if(m.find()){
                 return  m.group(1);
             }

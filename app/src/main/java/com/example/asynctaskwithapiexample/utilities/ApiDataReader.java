@@ -29,6 +29,10 @@ public class ApiDataReader {
                     apiContentStream = downloadUrlContent(FLOATRATES_API_URL);
                     result = FloatRatesXmlParser.getCurrencyRatesBaseUsd(apiContentStream);
                     break;
+                case GUNFIRE_URL:
+                    apiContentStream = downloadUrlContent(GUNFIRE_URL);
+                    result = GunfireHtmlParser.getAmountAndDiscountFromGunfire(apiContentStream);
+                    break;
                 default:
             }
         }
