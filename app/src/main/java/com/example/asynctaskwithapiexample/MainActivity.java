@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
             public void onPostExecute(String result) {
                 tvStatus.setText(getString(R.string.data_loaded) + result);
             }
-        }.execute(Constants.GUNFIRE_URL);
+        //}.execute(Constants.GUNFIRE_URL);
         //}.execute(Constants.FLOATRATES_API_URL);
-        //}.execute(Constants.METEOLT_API_URL);
+        }.execute(Constants.METEOLT_API_URL);
     }
 
     public void getDataByThread() {
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     final String result = ApiDataReader.getValuesFromApi(Constants.FLOATRATES_API_URL);
+                    //final String result = ApiDataReader.getValuesFromApi(Constants.METEOLT_API_URL);
                     Runnable updateUIRunnable = new Runnable() {
                         @Override
                         public void run() {
@@ -88,14 +89,13 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
 
         //with Lambdas --->
-
-//        new Thread(() -> {
-//            try {
-//                final String result = ApiDataReader.getValuesFromApi(Constants.FLOATRATES_API_URL);
-//                runOnUiThread(() -> tvStatus.setText(getString(R.string.data_loaded) + result));
-//            } catch (IOException ex) {
-//                runOnUiThread(() -> tvStatus.setText("Error occured:" + ex.getMessage()));
-//            }
-//        }).start();
+        //        new Thread(() -> {
+        //            try {
+        //                final String result = ApiDataReader.getValuesFromApi(Constants.FLOATRATES_API_URL);
+        //                runOnUiThread(() -> tvStatus.setText(getString(R.string.data_loaded) + result));
+        //            } catch (IOException ex) {
+        //                runOnUiThread(() -> tvStatus.setText("Error occured:" + ex.getMessage()));
+        //            }
+        //        }).start();
     }
 }
