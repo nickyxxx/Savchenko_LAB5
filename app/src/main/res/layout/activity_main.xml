@@ -49,7 +49,7 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="text"
-        android:text="@string/enter_currency_name"
+        android:hint="@string/enter_currency_name"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

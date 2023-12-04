@@ -44,11 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         this.originalCurrencyList = new ArrayList<>();
 
-        // Initialize the ArrayAdapter with an empty list
+
         this.listAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, new ArrayList<>());
         this.lvItems.setAdapter(this.listAdapter);
 
-        // Set up TextWatcher for currency filter EditText
         currencyFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -125,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
     private List<String> parseCurrencyData(String data, String filter) {
         List<String> currencyList = new ArrayList<>();
 
-        // Placeholder implementation, replace with actual parsing logic
-        // Assuming data is in the format "Currency name: rate"
         String[] currencyArray = data.split("\n");
 
         for (String currency : currencyArray) {
@@ -135,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 String currencyName = currencyParts[0].trim();
                 String rate = currencyParts[1].trim();
 
-                // Check if the currency name contains the entered filter
                 if (currencyName.toLowerCase().contains(filter.toLowerCase())) {
                     currencyList.add(currency);
                 }
@@ -156,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(List<String> dataList) {
-        // Update the UI with the data list
         listAdapter.clear();
         listAdapter.addAll(dataList);
         listAdapter.notifyDataSetChanged();
